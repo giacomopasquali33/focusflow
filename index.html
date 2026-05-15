@@ -31,16 +31,9 @@
 * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 html, body { height: 100%; background: var(--bg); color: var(--text); font-family: 'DM Mono', monospace; overflow: hidden; }
 
-/* NAV */
-.app { display: flex; flex-direction: column; height: 100vh; max-width: 480px; margin: 0 auto; position: relative; }
-.nav { display: flex; justify-content: space-around; padding: 10px 16px 20px; background: var(--surface); border-top: 0.5px solid var(--border); position: relative; z-index: 10; }
-.nav-btn { display: flex; flex-direction: column; align-items: center; gap: 4px; background: none; border: none; color: var(--muted); font-family: 'DM Mono', monospace; font-size: 10px; cursor: pointer; padding: 8px 20px; border-radius: var(--radius-sm); transition: all 0.2s; }
-.nav-btn.active { color: var(--accent); }
-.nav-btn svg { width: 22px; height: 22px; }
-
+.app { display: flex; flex-direction: column; height: 100vh; max-width: 480px; margin: 0 auto; }
 /* SCREENS */
-.screen { flex: 1; overflow-y: auto; overflow-x: hidden; display: none; flex-direction: column; }
-.screen.active { display: flex; }
+.screen { flex: 1; overflow-y: auto; overflow-x: hidden; display: flex; flex-direction: column; }
 
 /* =========== POMODORO =========== */
 #screen-pomo { padding: 24px 20px 16px; align-items: center; }
@@ -86,69 +79,7 @@ html, body { height: 100%; background: var(--bg); color: var(--text); font-famil
 .snbtn { width: 28px; height: 28px; border-radius: 8px; border: 0.5px solid var(--border2); background: var(--surface2); color: var(--text); font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
 .snval { font-size: 13px; min-width: 36px; text-align: center; color: var(--text); }
 
-/* =========== TRACKER =========== */
-#screen-tracker { padding: 0; }
-.tracker-top { padding: 24px 20px 0; flex-shrink: 0; }
-.tracker-title { font-family: 'Fraunces', serif; font-size: 28px; font-weight: 300; }
-.tracker-sub { font-size: 11px; color: var(--muted); margin-top: 2px; margin-bottom: 20px; }
 
-.budget-card { background: var(--surface); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 18px; margin: 0 20px 20px; }
-.budget-row { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; }
-.budget-spent { font-family: 'Fraunces', serif; font-size: 32px; font-weight: 300; }
-.budget-total { font-size: 13px; color: var(--muted); }
-.budget-bar-bg { height: 5px; background: var(--surface2); border-radius: 3px; overflow: hidden; margin-bottom: 10px; }
-.budget-bar { height: 5px; border-radius: 3px; background: var(--accent2); transition: width 0.4s ease; }
-.budget-bar.warn { background: var(--accent3); }
-.budget-bar.danger { background: var(--accent); }
-.budget-meta { display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); }
-
-.cat-scroll { display: flex; gap: 8px; padding: 0 20px 16px; overflow-x: auto; flex-shrink: 0; scrollbar-width: none; }
-.cat-scroll::-webkit-scrollbar { display: none; }
-.cat-chip { padding: 6px 14px; border-radius: 20px; border: 0.5px solid var(--border2); background: transparent; color: var(--muted); font-family: 'DM Mono', monospace; font-size: 11px; cursor: pointer; white-space: nowrap; transition: all 0.2s; flex-shrink: 0; }
-.cat-chip.active { background: var(--surface2); color: var(--text); border-color: var(--border2); }
-
-.expenses-list { flex: 1; overflow-y: auto; padding: 0 20px 16px; }
-.expense-item { display: flex; align-items: center; gap: 12px; padding: 14px 0; border-bottom: 0.5px solid var(--border); }
-.expense-item:last-child { border-bottom: none; }
-.exp-icon { width: 40px; height: 40px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
-.exp-info { flex: 1; min-width: 0; }
-.exp-name { font-size: 13px; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.exp-cat { font-size: 11px; color: var(--muted); margin-top: 2px; }
-.exp-right { text-align: right; flex-shrink: 0; }
-.exp-amount { font-family: 'Fraunces', serif; font-size: 16px; color: var(--text); }
-.exp-date { font-size: 10px; color: var(--muted); margin-top: 2px; }
-.exp-del { background: none; border: none; color: var(--muted); cursor: pointer; padding: 4px; font-size: 16px; opacity: 0; transition: opacity 0.2s; }
-.expense-item:hover .exp-del { opacity: 1; }
-
-.empty-state { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--muted); gap: 8px; padding: 40px; text-align: center; }
-.empty-state .big { font-family: 'Fraunces', serif; font-size: 48px; }
-.empty-state p { font-size: 12px; line-height: 1.6; }
-
-/* FAB */
-.fab { position: fixed; bottom: 90px; right: 20px; width: 54px; height: 54px; border-radius: 50%; background: var(--accent); border: none; color: white; font-size: 26px; cursor: pointer; display: none; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(232,85,62,0.4); z-index: 20; transition: transform 0.15s; }
-.fab:active { transform: scale(0.93); }
-.fab.visible { display: flex; }
-
-/* MODAL */
-.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 50; display: none; align-items: flex-end; justify-content: center; }
-.modal-overlay.open { display: flex; }
-.modal { background: var(--surface); border-radius: var(--radius) var(--radius) 0 0; padding: 24px 20px 40px; width: 100%; max-width: 480px; animation: slideUp 0.25s ease; }
-@keyframes slideUp { from { transform: translateY(40px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-.modal-title { font-family: 'Fraunces', serif; font-size: 20px; font-weight: 300; margin-bottom: 20px; }
-.modal-field { margin-bottom: 16px; }
-.modal-label { font-size: 11px; color: var(--muted); margin-bottom: 6px; display: block; }
-.modal-input { width: 100%; padding: 12px 14px; background: var(--surface2); border: 0.5px solid var(--border2); border-radius: var(--radius-sm); color: var(--text); font-family: 'DM Mono', monospace; font-size: 14px; outline: none; }
-.modal-input:focus { border-color: var(--accent); }
-.cat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
-.cat-opt { padding: 10px 6px; border-radius: var(--radius-sm); border: 0.5px solid var(--border); background: var(--surface2); color: var(--muted); font-family: 'DM Mono', monospace; font-size: 10px; text-align: center; cursor: pointer; transition: all 0.15s; }
-.cat-opt.selected { border-color: var(--accent); color: var(--accent); background: rgba(232,85,62,0.1); }
-.cat-opt .cat-icon { font-size: 20px; display: block; margin-bottom: 4px; }
-.modal-actions { display: flex; gap: 10px; margin-top: 20px; }
-.btn-cancel { flex: 1; padding: 13px; border-radius: var(--radius-sm); border: 0.5px solid var(--border2); background: transparent; color: var(--muted); font-family: 'DM Mono', monospace; font-size: 13px; cursor: pointer; }
-.btn-save { flex: 2; padding: 13px; border-radius: var(--radius-sm); border: none; background: var(--accent); color: white; font-family: 'DM Mono', monospace; font-size: 13px; cursor: pointer; }
-
-/* BUDGET MODAL */
-.budget-modal { background: var(--surface); border-radius: var(--radius) var(--radius) 0 0; padding: 24px 20px 40px; width: 100%; max-width: 480px; animation: slideUp 0.25s ease; }
 
 /* scrollbar */
 .screen::-webkit-scrollbar { width: 0; }
@@ -239,126 +170,16 @@ html, body { height: 100%; background: var(--bg); color: var(--text); font-famil
     </div>
   </div>
 
-  <!-- TRACKER SCREEN -->
-  <div class="screen" id="screen-tracker">
-    <div class="tracker-top">
-      <div class="tracker-title">Spending</div>
-      <div class="tracker-sub" id="tracker-month">Loading...</div>
-
-      <div class="budget-card">
-        <div class="budget-row">
-          <span class="budget-spent" id="b-spent">CA$0</span>
-          <span class="budget-total">of <span id="b-total">CA$2,000</span> budget <button onclick="openBudgetModal()" style="background:none;border:none;color:var(--accent);font-family:'DM Mono',monospace;font-size:11px;cursor:pointer;">edit</button></span>
-        </div>
-        <div class="budget-bar-bg">
-          <div class="budget-bar" id="budget-bar" style="width:0%"></div>
-        </div>
-        <div class="budget-meta">
-          <span id="b-remaining">CA$2,000 remaining</span>
-          <span id="b-pct">0%</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="cat-scroll" id="cat-scroll">
-      <button class="cat-chip active" data-cat="all" onclick="filterCat(this,'all')">All</button>
-      <button class="cat-chip" data-cat="🍔 Food" onclick="filterCat(this,'🍔 Food')">🍔 Food</button>
-      <button class="cat-chip" data-cat="🚌 Transport" onclick="filterCat(this,'🚌 Transport')">🚌 Transport</button>
-      <button class="cat-chip" data-cat="🛒 Groceries" onclick="filterCat(this,'🛒 Groceries')">🛒 Groceries</button>
-      <button class="cat-chip" data-cat="💊 Health" onclick="filterCat(this,'💊 Health')">💊 Health</button>
-      <button class="cat-chip" data-cat="🎮 Fun" onclick="filterCat(this,'🎮 Fun')">🎮 Fun</button>
-      <button class="cat-chip" data-cat="🏠 Housing" onclick="filterCat(this,'🏠 Housing')">🏠 Housing</button>
-      <button class="cat-chip" data-cat="📱 Subscriptions" onclick="filterCat(this,'📱 Subscriptions')">📱 Subscriptions</button>
-      <button class="cat-chip" data-cat="✈️ Travel" onclick="filterCat(this,'✈️ Travel')">✈️ Travel</button>
-      <button class="cat-chip" data-cat="📦 Other" onclick="filterCat(this,'📦 Other')">📦 Other</button>
-    </div>
-
-    <div class="expenses-list" id="expenses-list"></div>
-  </div>
-
-  <!-- BOTTOM NAV -->
-  <nav class="nav">
-    <button class="nav-btn active" id="nav-pomo" onclick="switchScreen('pomo')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
-      Focus
-    </button>
-    <button class="nav-btn" id="nav-tracker" onclick="switchScreen('tracker')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-      Spending
-    </button>
-  </nav>
-</div>
-
-<!-- FAB -->
-<button class="fab" id="fab" onclick="openAddModal()">+</button>
-
-<!-- ADD EXPENSE MODAL -->
-<div class="modal-overlay" id="add-modal">
-  <div class="modal">
-    <div class="modal-title">Add expense</div>
-    <div class="modal-field">
-      <label class="modal-label">Description</label>
-      <input class="modal-input" id="exp-name-input" type="text" placeholder="e.g. Tim Hortons">
-    </div>
-    <div class="modal-field">
-      <label class="modal-label">Amount (CAD)</label>
-      <input class="modal-input" id="exp-amount-input" type="number" step="0.01" placeholder="0.00" inputmode="decimal">
-    </div>
-    <div class="modal-field">
-      <label class="modal-label">Category</label>
-      <div class="cat-grid" id="cat-grid">
-        <button class="cat-opt selected" data-cat="🍔 Food" onclick="selectCat(this)"><span class="cat-icon">🍔</span>Food</button>
-        <button class="cat-opt" data-cat="🚌 Transport" onclick="selectCat(this)"><span class="cat-icon">🚌</span>Transport</button>
-        <button class="cat-opt" data-cat="🛒 Groceries" onclick="selectCat(this)"><span class="cat-icon">🛒</span>Groceries</button>
-        <button class="cat-opt" data-cat="💊 Health" onclick="selectCat(this)"><span class="cat-icon">💊</span>Health</button>
-        <button class="cat-opt" data-cat="🎮 Fun" onclick="selectCat(this)"><span class="cat-icon">🎮</span>Fun</button>
-        <button class="cat-opt" data-cat="🏠 Housing" onclick="selectCat(this)"><span class="cat-icon">🏠</span>Housing</button>
-        <button class="cat-opt" data-cat="📱 Subscriptions" onclick="selectCat(this)"><span class="cat-icon">📱</span>Subs</button>
-        <button class="cat-opt" data-cat="📦 Other" onclick="selectCat(this)"><span class="cat-icon">📦</span>Other</button>
-      </div>
-    </div>
-    <div class="modal-actions">
-      <button class="btn-cancel" onclick="closeModal()">Cancel</button>
-      <button class="btn-save" onclick="saveExpense()">Add expense</button>
-    </div>
-  </div>
-</div>
-
-<!-- BUDGET MODAL -->
-<div class="modal-overlay" id="budget-modal">
-  <div class="budget-modal">
-    <div class="modal-title">Monthly budget</div>
-    <div class="modal-field">
-      <label class="modal-label">Budget (CAD)</label>
-      <input class="modal-input" id="budget-input" type="number" step="50" placeholder="2000" inputmode="decimal">
-    </div>
-    <div class="modal-actions">
-      <button class="btn-cancel" onclick="closeBudgetModal()">Cancel</button>
-      <button class="btn-save" onclick="saveBudget()">Save</button>
-    </div>
-  </div>
+  <!-- BOTTOM NAV removed — single screen app -->
 </div>
 
 <script>
 // =================== DATA ===================
 const STORE_POMO = 'ff_pomo_stats';
-const STORE_EXP = 'ff_expenses';
-const STORE_BUDGET = 'ff_budget';
 const STORE_SETTINGS = 'ff_settings';
 
 function load(key, def) { try { return JSON.parse(localStorage.getItem(key)) || def; } catch { return def; } }
 function save(key, val) { localStorage.setItem(key, JSON.stringify(val)); }
-
-// =================== SCREEN SWITCH ===================
-let currentScreen = 'pomo';
-function switchScreen(name) {
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-  document.getElementById('screen-' + name).classList.add('active');
-  document.getElementById('nav-' + name).classList.add('active');
-  currentScreen = name;
-  document.getElementById('fab').classList.toggle('visible', name === 'tracker');
-}
 
 // =================== POMODORO ===================
 const settings = load(STORE_SETTINGS, { work: 25, short: 5, long: 15, cycle: 4 });
@@ -499,131 +320,10 @@ function adjustSetting(key, delta) {
   if (key === 'cycle') updateCycleDots();
 }
 
-// =================== EXPENSES ===================
-let expenses = load(STORE_EXP, []);
-let budget = load(STORE_BUDGET, 2000);
-let activeFilter = 'all';
-let selectedCat = '🍔 Food';
-
-function getMonthKey() {
-  const n = new Date(); return n.getFullYear() + '-' + String(n.getMonth()+1).padStart(2,'0');
-}
-function getThisMonthExpenses() {
-  const mk = getMonthKey();
-  return expenses.filter(e => e.month === mk);
-}
-
-function updateBudgetCard() {
-  const me = getThisMonthExpenses();
-  const spent = me.reduce((a,e) => a + e.amount, 0);
-  const pct = budget > 0 ? Math.min(100, Math.round(spent / budget * 100)) : 0;
-  const remaining = budget - spent;
-  document.getElementById('b-spent').textContent = 'CA$' + spent.toFixed(2);
-  document.getElementById('b-total').textContent = 'CA$' + budget.toFixed(0);
-  document.getElementById('b-remaining').textContent = (remaining >= 0 ? 'CA$' + remaining.toFixed(2) + ' remaining' : 'CA$' + Math.abs(remaining).toFixed(2) + ' over budget');
-  document.getElementById('b-pct').textContent = pct + '%';
-  const bar = document.getElementById('budget-bar');
-  bar.style.width = pct + '%';
-  bar.className = 'budget-bar' + (pct > 90 ? ' danger' : pct > 70 ? ' warn' : '');
-}
-
-function renderExpenses() {
-  const me = getThisMonthExpenses();
-  const filtered = activeFilter === 'all' ? me : me.filter(e => e.category === activeFilter);
-  const list = document.getElementById('expenses-list');
-  if (filtered.length === 0) {
-    list.innerHTML = '<div class="empty-state"><div class="big">🧾</div><p>No expenses yet.<br>Tap + to add one.</p></div>';
-    return;
-  }
-  const sorted = [...filtered].sort((a,b) => new Date(b.date) - new Date(a.date));
-  list.innerHTML = sorted.map(e => `
-    <div class="expense-item">
-      <div class="exp-icon">${e.category.split(' ')[0]}</div>
-      <div class="exp-info">
-        <div class="exp-name">${e.name}</div>
-        <div class="exp-cat">${e.category}</div>
-      </div>
-      <div class="exp-right">
-        <div class="exp-amount">CA$${e.amount.toFixed(2)}</div>
-        <div class="exp-date">${formatDate(e.date)}</div>
-      </div>
-      <button class="exp-del" onclick="deleteExpense('${e.id}')">×</button>
-    </div>
-  `).join('');
-}
-
-function formatDate(d) {
-  const dt = new Date(d + 'T12:00:00');
-  return dt.toLocaleDateString('en-CA', { month: 'short', day: 'numeric' });
-}
-
-function filterCat(btn, cat) {
-  document.querySelectorAll('.cat-chip').forEach(c => c.classList.remove('active'));
-  btn.classList.add('active');
-  activeFilter = cat;
-  renderExpenses();
-}
-
-function selectCat(btn) {
-  document.querySelectorAll('.cat-opt').forEach(b => b.classList.remove('selected'));
-  btn.classList.add('selected');
-  selectedCat = btn.dataset.cat;
-}
-
-function openAddModal() {
-  document.getElementById('exp-name-input').value = '';
-  document.getElementById('exp-amount-input').value = '';
-  document.getElementById('add-modal').classList.add('open');
-  setTimeout(() => document.getElementById('exp-name-input').focus(), 300);
-}
-function closeModal() { document.getElementById('add-modal').classList.remove('open'); }
-
-function saveExpense() {
-  const name = document.getElementById('exp-name-input').value.trim();
-  const amount = parseFloat(document.getElementById('exp-amount-input').value);
-  if (!name || isNaN(amount) || amount <= 0) return;
-  const expense = {
-    id: Date.now().toString(),
-    name, amount,
-    category: selectedCat,
-    date: new Date().toISOString().split('T')[0],
-    month: getMonthKey()
-  };
-  expenses.push(expense);
-  save(STORE_EXP, expenses);
-  closeModal();
-  updateBudgetCard();
-  renderExpenses();
-}
-
-function deleteExpense(id) {
-  expenses = expenses.filter(e => e.id !== id);
-  save(STORE_EXP, expenses);
-  updateBudgetCard();
-  renderExpenses();
-}
-
-function openBudgetModal() {
-  document.getElementById('budget-input').value = budget;
-  document.getElementById('budget-modal').classList.add('open');
-}
-function closeBudgetModal() { document.getElementById('budget-modal').classList.remove('open'); }
-function saveBudget() {
-  const val = parseFloat(document.getElementById('budget-input').value);
-  if (!isNaN(val) && val > 0) { budget = val; save(STORE_BUDGET, budget); }
-  closeBudgetModal();
-  updateBudgetCard();
-}
-
-// close modals on overlay click
-document.getElementById('add-modal').addEventListener('click', function(e) { if (e.target === this) closeModal(); });
-document.getElementById('budget-modal').addEventListener('click', function(e) { if (e.target === this) closeBudgetModal(); });
-
 // =================== INIT ===================
 function init() {
   const now = new Date();
   document.getElementById('pomo-date').textContent = now.toLocaleDateString('en-CA', { weekday: 'long', month: 'long', day: 'numeric' });
-  document.getElementById('tracker-month').textContent = now.toLocaleDateString('en-CA', { month: 'long', year: 'numeric' });
   document.getElementById('set-work').textContent = settings.work + 'm';
   document.getElementById('set-short').textContent = settings.short + 'm';
   document.getElementById('set-long').textContent = settings.long + 'm';
@@ -632,8 +332,6 @@ function init() {
   updateCycleDots();
   checkStreak();
   updatePomoStats();
-  updateBudgetCard();
-  renderExpenses();
   if ('Notification' in window && Notification.permission === 'default') {
     Notification.requestPermission();
   }
